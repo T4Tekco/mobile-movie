@@ -2,9 +2,9 @@ package com.android.t4tek.data.di
 
 import android.content.Context
 import com.android.t4tek.BuildConfig
-import com.android.t4tek.data.api.ApiHelper
-import com.android.t4tek.data.api.ApiHelperImpl
-import com.android.t4tek.data.api.ApiService
+import com.android.t4tek.data.remote.ApiHelper
+import com.android.t4tek.data.remote.ApiHelperImpl
+import com.android.t4tek.data.remote.ApiService
 import com.android.t4tek.data.local.AppDatabase
 import dagger.Module
 import dagger.Provides

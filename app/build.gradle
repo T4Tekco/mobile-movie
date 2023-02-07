@@ -119,6 +119,8 @@ dependencies {
     def coroutine_version ="1.6.4"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine_version"
+    // log timber
+    implementation 'com.jakewharton.timber:timber:5.0.1'
 }
 kapt {
     correctErrorTypes true
