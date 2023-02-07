@@ -24,7 +24,31 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        debug {
+            minifyEnabled false
+            versionNameSuffix "-debug"
+            manifestPlaceholders = [cleartextTrafficConfig: "true"]
+            signingConfig signingConfigs.debug
+        }
     }
+    flavorDimensions "environment"
+    productFlavors {
+        nightly {
+            applicationIdSuffix ".nightly"
+            versionNameSuffix "-nightly"
+            buildConfigField "String", "API_URL", "\"https://nightly-logigram-be-aws.symcresol.com\""
+        }
+        staging {
+            applicationIdSuffix ".staging"
+            versionNameSuffix "-staging"
+            buildConfigField "String", "API_URL", ""
+
+        }
+        production {
+            buildConfigField "String", "API_URL", ""
+        }
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -32,10 +56,6 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-}
-ext {
-
-
 }
 
 dependencies {
@@ -86,6 +106,18 @@ dependencies {
     testImplementation "androidx.room:room-testing:$room_version"
     // optional - Paging 3 Integration
     implementation "androidx.room:room-paging:$room_version"
+
+    // Networking
+    def retrofit_version = "2.9.0"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
+    implementation "com.squareup.okhttp3:okhttp:$retrofit_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$retrofit_version"
+
+    // Coroutine
+    def coroutine_version ="1.6.4"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine_version"
 }
 kapt {
     correctErrorTypes true

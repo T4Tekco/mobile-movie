@@ -1,6 +1,8 @@
 package com.android.t4tek.data.di
 
 import android.content.Context
+import com.android.t4tek.data.api.ApiHelper
+import com.android.t4tek.data.api.ApiHelperImpl
 import com.android.t4tek.data.local.AppDatabase
 import dagger.Module
 import dagger.Provides
@@ -19,4 +21,8 @@ object DataModule {
             context = appContext
         )
     }
+    @Provides
+    @Singleton
+    fun provideApiHelper(apiHelper: ApiHelperImpl): ApiHelper = apiHelper
+
 }
