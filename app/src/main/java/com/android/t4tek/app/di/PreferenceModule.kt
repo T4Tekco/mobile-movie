@@ -2,7 +2,7 @@ package com.android.t4tek.app.di
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.android.t4tek.domain.utils.SharedPrefsUtils
+import com.android.utils.SharedPrefsUtils
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

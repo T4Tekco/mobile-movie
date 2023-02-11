@@ -1,4 +1,4 @@
-package com.android.t4tek.domain.utils
+package com.android.utils
 
 import android.content.Context
 import android.net.ConnectivityManager

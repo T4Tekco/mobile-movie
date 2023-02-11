@@ -2,8 +2,7 @@ package com.android.t4tek.data.remote
 
 import androidx.annotation.WorkerThread
 import com.android.t4tek.data.local.entity.User
-import com.android.t4tek.domain.utils.NetworkHelper
-import org.json.JSONObject
+import com.android.utils.NetworkHelper
 import retrofit2.HttpException
 import retrofit2.Response
 import timber.log.Timber

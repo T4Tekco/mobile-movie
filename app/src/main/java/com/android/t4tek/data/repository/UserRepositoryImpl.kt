@@ -14,7 +14,6 @@ class UserRepositoryImpl @Inject constructor(
     private val apiHelper: ApiHelper
 ) : UserRepository, BaseRepository() {
     override fun showLog() {
-        Log.i("hanhmh1203", "showLog")
         insertRandomRecord()
     }
 

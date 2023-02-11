@@ -1,15 +1,13 @@
-package com.android.t4tek.domain.utils
+package com.android.utils
 
 import android.content.SharedPreferences
 import androidx.annotation.Keep
 import javax.inject.Inject
-import kotlin.collections.ArrayList
-import kotlin.collections.HashMap
 @Keep
 class SharedPrefsUtils @Inject constructor(private val shared: SharedPreferences) {
 
     companion object {
-        const val PREF_NAME = "t4tekPref"
+        const val PREF_NAME = "SharedPreferences_19213425"
     }
 
     fun deleteAll() {

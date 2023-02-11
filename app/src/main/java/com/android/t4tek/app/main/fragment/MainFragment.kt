@@ -1,13 +1,15 @@
-package com.android.t4tek.app.main
+package com.android.t4tek.app.main.fragment
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import com.android.t4tek.R
+import com.android.t4tek.app.main.SharedViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -18,11 +20,23 @@ class MainFragment : Fragment() {
     }
 
     private val viewModel: MainViewModel by viewModels()
-//    private val viewModel:MainViewModel by viewModels()
+    lateinit var actViewModel: SharedViewModel
+
+    //    private val viewModel:MainViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
+        actViewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
+
         // TODO: Use the ViewModel
+        Log.i("MainActivity", "MainFragment isloading: ${actViewModel.isLoadingLiveData.value}")
+//        actViewModel.isLoadingLiveData.observe(this, {
+//            Log.i(
+//                "MainActivity",
+//                "MainFragment isLoadingLiveData: ${actViewModel.isLoadingLiveData.value}"
+//            )
+//        })
+        actViewModel.isLoadingLiveData.postValue(true)
     }
 
     override fun onCreateView(

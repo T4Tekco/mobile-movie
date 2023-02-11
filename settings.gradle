@@ -14,3 +14,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "t4tek"
 include ':app'
+//include ':app:common_utils'
+include ':utils'

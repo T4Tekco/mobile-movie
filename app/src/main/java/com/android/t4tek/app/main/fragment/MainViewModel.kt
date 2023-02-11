@@ -1,4 +1,4 @@
-package com.android.t4tek.app.main
+package com.android.t4tek.app.main.fragment
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -16,7 +16,6 @@ class MainViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             userRepository.showLog()
         }
-
-
     }
+
 }
