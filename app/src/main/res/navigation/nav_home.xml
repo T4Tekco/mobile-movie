@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_home"
+    app:startDestination="@id/pieFragment">
+
+    <fragment
+        android:id="@+id/pieFragment"
+        android:name="com.android.t4tek.app.main.pie.PieFragment"
+        android:label="fragment_pie"
+        tools:layout="@layout/fragment_pie" >
+        <action
+            android:id="@+id/action_pieFragment_to_oreoFragment"
+            app:destination="@id/oreoFragment" />
+        <argument
+            android:name="@string/nav_arg_to_pie_int"
+            app:argType="integer"
+            android:defaultValue="-1" />
+        <argument
+            android:name="@string/nav_arg_to_pie_string"
+            app:argType="string"
+            android:defaultValue="" />
+    </fragment>
+    <fragment
+        android:id="@+id/oreoFragment"
+        android:name="com.android.t4tek.app.main.oreo.OreoFragment"
+        android:label="fragment_oreo"
+        tools:layout="@layout/fragment_oreo" >
+        <action
+            android:id="@+id/action_oreoFragment_to_nougatFragment"
+            app:destination="@id/nougatFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/nougatFragment"
+        android:name="com.android.t4tek.app.main.nougat.NougatFragment"
+        android:label="fragment_nougat"
+        tools:layout="@layout/fragment_nougat" />
+</navigation>

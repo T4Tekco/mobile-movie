@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'com.google.dagger.hilt.android'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
@@ -18,7 +19,9 @@ android {
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
+    buildFeatures {
+        viewBinding true
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -64,6 +67,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
@@ -82,15 +86,13 @@ dependencies {
     def version_dagger_hilt = "2.44.2"
     implementation "com.google.dagger:hilt-android:$version_dagger_hilt"
     kapt "com.google.dagger:hilt-compiler:$version_dagger_hilt"
-
-
-    // For instrumentation tests
-    androidTestImplementation "com.google.dagger:hilt-android-testing:$version_dagger_hilt"
-    kaptAndroidTest "com.google.dagger:hilt-compiler:$version_dagger_hilt"
-
-    // For local unit tests
-    testImplementation "com.google.dagger:hilt-android-testing:$version_dagger_hilt"
-    kaptTest "com.google.dagger:hilt-compiler:$version_dagger_hilt"
+//    // For instrumentation tests
+//    androidTestImplementation "com.google.dagger:hilt-android-testing:$version_dagger_hilt"
+//    kaptAndroidTest "com.google.dagger:hilt-compiler:$version_dagger_hilt"
+//
+//    // For local unit tests
+//    testImplementation "com.google.dagger:hilt-android-testing:$version_dagger_hilt"
+//    kaptTest "com.google.dagger:hilt-compiler:$version_dagger_hilt"
 
     //// multidex
     def multidex_version = "2.0.1"
@@ -112,15 +114,31 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
     def okhttp_version = "4.10.0"
+    //noinspection GradleDependency
     implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
 
     // Coroutine
-    def coroutine_version ="1.6.4"
+    def coroutine_version = "1.6.4"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine_version"
     // log timber
     implementation 'com.jakewharton.timber:timber:5.0.1'
+
+//    navigation
+    def nav_version = "2.5.3"
+
+// The default implementations
+//    implementation "androidx.navigation:navigation-fragment:$nav_version"
+//    implementation "androidx.navigation:navigation-ui:$nav_version"
+
+// The Kotlin ones
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+    // Feature module Support
+    implementation "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
+    // Jetpack Compose Integration
+    implementation "androidx.navigation:navigation-compose:$nav_version"
 }
 kapt {
     correctErrorTypes true
