@@ -1,4 +1,6 @@
 package com.android.t4tek.app.base
 
-class BaseViewModel {
+import androidx.lifecycle.ViewModel
+
+open class BaseViewModel: ViewModel() {
 }
