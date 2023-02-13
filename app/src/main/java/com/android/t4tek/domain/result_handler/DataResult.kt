@@ -5,6 +5,7 @@ data class DataResult<T>(
     var dataResult: T? = null,
     var appError: AppError? = null,
 ) {
+
     companion object {
         fun <T> resultSuccess(data: T): DataResult<T> {
             return DataResult(
@@ -24,5 +25,9 @@ data class DataResult<T>(
                 dataResult = data
             )
         }
+    }
+
+    override fun toString(): String {
+        return "DataResult(status=$status, dataResult=$dataResult, appError=$appError)"
     }
 }

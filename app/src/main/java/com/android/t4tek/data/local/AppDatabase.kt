@@ -4,13 +4,12 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.android.t4tek.data.local.dao.UserDao
-import com.android.t4tek.data.local.entity.User
-import dagger.hilt.android.qualifiers.ApplicationContext
+import com.android.t4tek.data.local.dao.PersonDao
+import com.android.t4tek.domain.entity.PersonEntity
 
-@Database(entities = [User::class], version = 1)
+@Database(entities = [PersonEntity::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun userDao(): UserDao
+    abstract fun personDao(): PersonDao
 
     companion object {
         // Singleton prevents multiple instances of database opening at the

@@ -10,12 +10,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val userRepository: UserRepository
 ) : ViewModel() {
-    fun showLog(){
-        viewModelScope.launch(Dispatchers.IO) {
-            userRepository.showLog()
-        }
-    }
 
 }

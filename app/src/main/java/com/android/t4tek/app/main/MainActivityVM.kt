@@ -4,27 +4,23 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.t4tek.domain.repository.UserRepository
+import com.android.t4tek.domain.usecase.FetchPersonUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
 class MainActivityVM @Inject constructor(
-    private val userRepository: UserRepository
+    private val fetchPersonUseCase: FetchPersonUseCase
 ) : ViewModel() {
-    fun showLog(){
-        viewModelScope.launch(Dispatchers.IO) {
-            userRepository.showLog()
-        }
-    }
-    var isLoading = true;
+
     var isLoadingLiveData: MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
-    init {
-    }
     fun loadUser(){
         viewModelScope.launch(Dispatchers.IO) {
-            userRepository.getUsers()
+            val result = fetchPersonUseCase()
+            Timber.tag("MainActivityVM").i(result.toString())
         }
     }
 }
