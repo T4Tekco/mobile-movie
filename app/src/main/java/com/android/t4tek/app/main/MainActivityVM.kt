@@ -20,4 +20,11 @@ class MainActivityVM @Inject constructor(
     }
     var isLoading = true;
     var isLoadingLiveData: MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
+    init {
+    }
+    fun loadUser(){
+        viewModelScope.launch(Dispatchers.IO) {
+            userRepository.getUsers()
+        }
+    }
 }

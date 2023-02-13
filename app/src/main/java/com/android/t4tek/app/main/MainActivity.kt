@@ -37,5 +37,6 @@ class MainActivity : BaseActivity() {
 //        }
         Timber.tag("android1912").i(networkHelper.isNetworkConnected().toString())
         findNav(R.id.navHostFragment)
+        viewModel.loadUser()
     }
 }

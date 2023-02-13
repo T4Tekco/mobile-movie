@@ -39,7 +39,8 @@ android {
         nightly {
             applicationIdSuffix ".nightly"
             versionNameSuffix "-nightly"
-            buildConfigField "String", "API_URL", "\"https://nightly-logigram-be-aws.symcresol.com\""
+
+            buildConfigField "String", "API_URL", "\"http://api.open-notify.org\""
         }
         staging {
             applicationIdSuffix ".staging"
@@ -110,6 +111,9 @@ dependencies {
     implementation "androidx.room:room-paging:$room_version"
 
     // Networking
+    def moshi_version = "1.9.3"
+    implementation "com.squareup.moshi:moshi:$moshi_version"
+    implementation "com.squareup.moshi:moshi-kotlin:$moshi_version"
     def retrofit_version = "2.9.0"
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
@@ -128,9 +132,6 @@ dependencies {
 //    navigation
     def nav_version = "2.5.3"
 
-// The default implementations
-//    implementation "androidx.navigation:navigation-fragment:$nav_version"
-//    implementation "androidx.navigation:navigation-ui:$nav_version"
 
 // The Kotlin ones
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
