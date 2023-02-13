@@ -51,13 +51,15 @@ class PieFragment : BaseFragment() {
 
     private fun onclick() {
         binding?.let {
-            it.btnToOreo.setOnClickListener {
-//                val bundle = bundleOf(
-//                    getString(R.string.nav_arg_to_oreo_int) to 1,
-//                    getString(R.string.nav_arg_to_oreo_string) to "from PieFragment to Oreo",
-//                )
-//                findNavController().navigate(R.id.action_pieFragment_to_oreoFragment, bundle)
+            it.btnFetchApi.setOnClickListener {
                 actViewModel.loadUser()
+            }
+            it.btnToOreo.setOnClickListener {
+                val bundle = bundleOf(
+                    getString(R.string.nav_arg_to_oreo_int) to 1,
+                    getString(R.string.nav_arg_to_oreo_string) to "from PieFragment to Oreo",
+                )
+                findNavController().navigate(R.id.action_pieFragment_to_oreoFragment, bundle)
             }
             it.btnToNougat.setOnClickListener {
                 val bundle = bundleOf(
@@ -73,6 +75,7 @@ class PieFragment : BaseFragment() {
         super.onCreate(savedInstanceState)
         Timber.i("PieFragment onCreate")
     }
+
     override fun onStop() {
         super.onStop()
         Timber.i("PieFragment onStop")
