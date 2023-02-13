@@ -21,14 +21,13 @@ class MainActivity : BaseActivity() {
 
     @Inject
     lateinit var shared: SharedPrefsUtils
-    var binding: ActivityMainBinding? = null
+    private var binding: ActivityMainBinding? = null
 
     @Inject
     lateinit var networkHelper: NetworkHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_main)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding?.root)
 //        if (savedInstanceState == null) {
@@ -36,13 +35,7 @@ class MainActivity : BaseActivity() {
 //                .replace(R.id.container, MainFragment.newInstance())
 //                .commitNow()
 //        }
-        shared.saveString("android1912", "android1912")
-        Timber.tag("android1912").i(shared.toString())
-        shared.getString("android1912")?.let {
-            Timber.tag("android1912").i(it)
-        }
         Timber.tag("android1912").i(networkHelper.isNetworkConnected().toString())
-//        val nav = this.findNavController(R.id.navHostFragment)
         findNav(R.id.navHostFragment)
     }
 }
