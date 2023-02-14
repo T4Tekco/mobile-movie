@@ -5,6 +5,7 @@ import com.android.t4tek.domain.repository.UserRepository
 import com.android.t4tek.domain.result_handler.AppErrorType
 import com.android.t4tek.domain.result_handler.DataResult
 import com.android.t4tek.domain.result_handler.StatusResult
+import timber.log.Timber
 import javax.inject.Inject
 
 class FetchPersonUseCase @Inject constructor(

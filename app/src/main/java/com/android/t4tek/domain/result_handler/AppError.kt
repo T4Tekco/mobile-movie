@@ -4,4 +4,8 @@ class AppError (
     var errorType: AppErrorType = AppErrorType.Unknown,
     var errorCode: String? = "",
     var errorMessage: String? = "",
-)
+){
+    override fun toString(): String {
+        return "AppError(errorType=$errorType, errorCode=$errorCode, errorMessage=$errorMessage)"
+    }
+}

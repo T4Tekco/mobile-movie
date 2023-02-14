@@ -17,11 +17,12 @@ data class DataResult<T>(
         fun <T> resultError(
             errorType: AppErrorType? = AppErrorType.Unknown,
             errorMessage: String? = "",
+            errorCode: String? = "",
             data: T? = null
         ): DataResult<T> {
             return DataResult(
                 status = StatusResult.Error,
-                appError = AppError(errorType!!, errorMessage),
+                appError = AppError(errorType=errorType!!, errorMessage = errorMessage, errorCode = errorCode),
                 dataResult = data
             )
         }

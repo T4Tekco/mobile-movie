@@ -13,6 +13,7 @@ import com.android.t4tek.R
 import com.android.t4tek.app.base.BaseFragment
 import com.android.t4tek.app.main.MainActivityVM
 import com.android.t4tek.app.main.fragment.MainViewModel
+import com.android.t4tek.app.utils.Status
 import com.android.t4tek.databinding.ActivityMainBinding
 import com.android.t4tek.databinding.FragmentPieBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,7 +23,7 @@ import kotlin.random.Random
 
 @AndroidEntryPoint
 class PieFragment : BaseFragment() {
-
+    private val TAG = "PieFragment"
     companion object {
         fun newInstance() = PieFragment()
     }
@@ -40,6 +41,7 @@ class PieFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        obServe()
         arguments?.let {
             val argInt = it.getInt(getString(R.string.nav_arg_to_pie_int))
             val argString = it.getString(getString(R.string.nav_arg_to_pie_string))
@@ -49,10 +51,32 @@ class PieFragment : BaseFragment() {
         onclick()
     }
 
+    private fun obServe() {
+        viewModel.personLoader.observe(viewLifecycleOwner) {
+            when (it.status) {
+                Status.SUCCESS -> {
+                    binding?.loading?.visibility = View.GONE
+                    val data = it.data.toString()
+                    binding?.tvData?.text = data
+                    Timber.tag(TAG).i(data)
+                }
+                Status.ERROR -> {
+                    binding?.tvData?.text = it.message
+                    binding?.loading?.visibility = View.GONE
+                }
+                Status.LOADING -> {
+                    Timber.tag(TAG).i("loading")
+                    binding?.tvData?.text = ""
+                    binding?.loading?.visibility = View.VISIBLE
+                }
+            }
+        }
+    }
+
     private fun onclick() {
         binding?.let {
             it.btnFetchApi.setOnClickListener {
-                actViewModel.loadUser()
+                viewModel.fetchPerson()
             }
             it.btnToOreo.setOnClickListener {
                 val bundle = bundleOf(

@@ -28,8 +28,7 @@ class UserRepositoryImpl @Inject constructor(
             }
             return DataResult.resultSuccess(emptyList())
         } catch (ex: Exception) {
-            Timber.tag("UserRepositoryImpl").i("ex: ${ex}")
-            return DataResult.resultError(AppErrorType.FetchApiException, errorMessage = ex.message)
+            return DataResult.resultError(AppErrorType.FetchApiException, errorMessage = ex.stackTraceToString())
         }
     }
 
@@ -37,7 +36,8 @@ class UserRepositoryImpl @Inject constructor(
         return try {
             val list = persons.map {  it.toEntity()}.toList()
             db.personDao().insertAll(*list.toTypedArray())
-            DataResult.resultSuccess(list)
+            val dbList = db.personDao().getAll()
+            DataResult.resultSuccess(dbList)
         } catch (ex: Exception) {
             Timber.tag("UserRepositoryImpl").i("ex: ${ex}")
             DataResult.resultError(AppErrorType.DatabaseException, errorMessage = ex.message)
