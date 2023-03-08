@@ -52,7 +52,8 @@ class PieFragment : BaseFragment() {
     }
 
     private fun obServe() {
-        viewModel.personLoader.observe(viewLifecycleOwner) {
+
+        viewModel.movieLoader.observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
                     binding?.loading?.visibility = View.GONE
@@ -76,7 +77,7 @@ class PieFragment : BaseFragment() {
     private fun onclick() {
         binding?.let {
             it.btnFetchApi.setOnClickListener {
-                viewModel.fetchPerson()
+                viewModel.fetchMovies()
             }
             it.btnToOreo.setOnClickListener {
                 val bundle = bundleOf(

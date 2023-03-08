@@ -14,12 +14,4 @@ import javax.inject.Inject
 class MainActivityVM @Inject constructor(
     private val userRepository: UserRepository
 ) : BaseViewModel() {
-
-    var isLoadingLiveData: MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
-    fun loadUser(){
-        viewModelScope.launch(Dispatchers.IO) {
-            val result = userRepository.getPersonApi()
-            Timber.tag("MainActivityVM").i(result.toString())
-        }
-    }
 }

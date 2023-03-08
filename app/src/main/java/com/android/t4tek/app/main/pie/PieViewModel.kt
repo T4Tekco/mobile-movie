@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.android.t4tek.app.base.BaseViewModel
 import com.android.t4tek.app.utils.Resource
 import com.android.t4tek.data.entity.PersonEntity
+import com.android.t4tek.data.json_model.JsonMovie
 import com.android.t4tek.data.json_model.JsonPerson
 import com.android.t4tek.data.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -29,6 +30,23 @@ class PieViewModel @Inject constructor(
                 _personLoader.postValue(Resource.success(persons))
             } catch (ex: Exception) {
                 _personLoader.postValue(
+                    ex.message?.let { Resource.error(it) }
+                )
+            }
+        }
+    }
+
+
+    private var _movieLoader: MutableLiveData<Resource<List<JsonMovie>>> = MutableLiveData()
+    val movieLoader: LiveData<Resource<List<JsonMovie>>> = _movieLoader
+    fun fetchMovies() {
+        ioScope.launch {
+            _movieLoader.postValue(Resource.loading())
+            try {
+                val result = userRepository.getMovies()
+                _movieLoader.postValue(Resource.success(result))
+            } catch (ex: Exception) {
+                _movieLoader.postValue(
                     ex.message?.let { Resource.error(it) }
                 )
             }

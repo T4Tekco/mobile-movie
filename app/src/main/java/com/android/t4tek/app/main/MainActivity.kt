@@ -30,13 +30,7 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding?.root)
-//        if (savedInstanceState == null) {
-//            supportFragmentManager.beginTransaction()
-//                .replace(R.id.container, MainFragment.newInstance())
-//                .commitNow()
-//        }
         Timber.tag("android1912").i(networkHelper.isNetworkConnected().toString())
         findNav(R.id.navHostFragment)
-        viewModel.loadUser()
     }
 }

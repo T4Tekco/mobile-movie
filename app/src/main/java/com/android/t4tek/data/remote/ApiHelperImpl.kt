@@ -1,6 +1,7 @@
 package com.android.t4tek.data.remote
 
 import androidx.annotation.WorkerThread
+import com.android.t4tek.data.remote.response.MoviesResponse
 import com.android.t4tek.data.remote.response.PeopleResponse
 import com.android.utils.NetworkHelper
 import retrofit2.HttpException
@@ -13,6 +14,11 @@ class ApiHelperImpl @Inject constructor(
     private val networkHelper: NetworkHelper,
     private val apiService: ApiService
 ) : ApiHelper {
+    @WorkerThread
+    override suspend fun getMovies(): Response<MoviesResponse> {
+        return safeApiCall { apiService.getMovies() }
+    }
+
     @WorkerThread
     suspend fun <T> safeApiCall(callFunction: suspend () -> T): T {
         return if (networkHelper.isNetworkConnected())

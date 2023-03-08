@@ -27,15 +27,6 @@ class MainFragment : Fragment() {
 //        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
 //        actViewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
 
-        // TODO: Use the ViewModel
-        Log.i("MainActivity", "MainFragment isloading: ${actViewModel.isLoadingLiveData.value}")
-        actViewModel.isLoadingLiveData.observe(this, {
-            Log.i(
-                "MainActivity",
-                "MainFragment isLoadingLiveData: ${actViewModel.isLoadingLiveData.value}"
-            )
-        })
-        actViewModel.isLoadingLiveData.postValue(true)
     }
 
     override fun onCreateView(
