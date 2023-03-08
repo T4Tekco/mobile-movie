@@ -1,10 +1,10 @@
-package com.android.t4tek.domain.entity
+package com.android.t4tek.data.entity
 
 import androidx.annotation.Keep
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.android.t4tek.domain.json_model.JsonPerson
+import com.android.t4tek.data.json_model.JsonPerson
 
 @Keep
 @Entity(tableName = "Person")

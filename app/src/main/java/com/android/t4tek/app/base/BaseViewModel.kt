@@ -1,8 +1,6 @@
 package com.android.t4tek.app.base
 
 import androidx.lifecycle.ViewModel
-import com.android.t4tek.domain.result_handler.DataResult
-import com.android.t4tek.domain.result_handler.StatusResult
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -21,13 +19,5 @@ abstract class BaseViewModel: ViewModel() {
         ioDispatcher.cancel()
         mainDispatcher.cancel()
         super.onCleared()
-    }
-
-
-    fun <T> handleIfError(dataResult: DataResult<T>): DataResult<T> {
-        if (dataResult.status == StatusResult.Error) {
-            Timber.e(dataResult.appError?.errorMessage)
-        }
-        return dataResult
     }
 }

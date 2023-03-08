@@ -9,7 +9,6 @@ import timber.log.Timber
 class MainApplication : MultiDexApplication() {
     override fun onCreate() {
         super.onCreate()
-//        MultiDex.install(this)
         Timber.plant(Timber.DebugTree())
     }
 }

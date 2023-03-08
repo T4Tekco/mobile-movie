@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.android.t4tek.data.local.dao.PersonDao
-import com.android.t4tek.domain.entity.PersonEntity
+import com.android.t4tek.data.entity.PersonEntity
 
 @Database(entities = [PersonEntity::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {

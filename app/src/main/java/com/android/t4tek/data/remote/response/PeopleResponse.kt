@@ -1,7 +1,7 @@
 package com.android.t4tek.data.remote.response
 
 import androidx.annotation.Keep
-import com.android.t4tek.domain.json_model.JsonPerson
+import com.android.t4tek.data.json_model.JsonPerson
 import com.squareup.moshi.Json
 @Keep
 data class PeopleResponse(
