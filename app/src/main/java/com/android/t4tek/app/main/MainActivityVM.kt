@@ -12,6 +12,5 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainActivityVM @Inject constructor(
-    private val userRepository: UserRepository
 ) : BaseViewModel() {
 }

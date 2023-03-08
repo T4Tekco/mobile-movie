@@ -19,23 +19,6 @@ import javax.inject.Inject
 class PieViewModel @Inject constructor(
     private val userRepository: UserRepository
 ) : BaseViewModel() {
-    private var _personLoader: MutableLiveData<Resource<List<PersonEntity>>> = MutableLiveData()
-    val personLoader: LiveData<Resource<List<PersonEntity>>> = _personLoader
-    fun fetchPerson() {
-        ioScope.launch {
-            _personLoader.postValue(Resource.loading())
-            try {
-                val result = userRepository.getPersonApi()
-                val persons = result.map { it.toEntity() }.toList()
-                _personLoader.postValue(Resource.success(persons))
-            } catch (ex: Exception) {
-                _personLoader.postValue(
-                    ex.message?.let { Resource.error(it) }
-                )
-            }
-        }
-    }
-
 
     private var _movieLoader: MutableLiveData<Resource<List<JsonMovie>>> = MutableLiveData()
     val movieLoader: LiveData<Resource<List<JsonMovie>>> = _movieLoader
