@@ -6,9 +6,7 @@ import com.android.t4tek.data.json_model.JsonMovie
 
 interface UserRepository {
 
-    suspend fun getPersonApi(): List<JsonPerson>
     suspend fun savePersonsToDb(persons: List<JsonPerson>): List<PersonEntity>
-    suspend fun clearAllPerson(): Boolean
     suspend fun getMovies(): List<JsonMovie>
 
 }

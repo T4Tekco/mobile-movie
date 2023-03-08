@@ -44,7 +44,4 @@ class ApiHelperImpl @Inject constructor(
 
     }
 
-    override suspend fun getUsers(): Response<PeopleResponse> {
-        return safeApiCall { apiService.getUsers() }
-    }
 }

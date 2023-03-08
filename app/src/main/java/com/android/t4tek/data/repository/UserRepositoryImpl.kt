@@ -22,16 +22,6 @@ class UserRepositoryImpl @Inject constructor(
         return emptyList()
     }
 
-    override suspend fun getPersonApi(): List<JsonPerson> {
-            val response = apiHelper.getUsers()
-            if (response.isSuccessful) {
-                val peopleResponse = response.body() as PeopleResponse
-                if (peopleResponse.isSuccess()) {
-                    return peopleResponse.peoples
-                }
-            }
-            return emptyList()
-    }
 
     override suspend fun savePersonsToDb(persons: List<JsonPerson>): List<PersonEntity> {
             val list = persons.map {  it.toEntity()}.toList()
@@ -40,8 +30,4 @@ class UserRepositoryImpl @Inject constructor(
             return dbList
     }
 
-    override suspend fun clearAllPerson(): Boolean {
-        db.personDao().clearAll()
-        return true
-    }
 }
