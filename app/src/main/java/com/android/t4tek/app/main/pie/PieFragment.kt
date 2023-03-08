@@ -12,14 +12,10 @@ import androidx.navigation.fragment.findNavController
 import com.android.t4tek.R
 import com.android.t4tek.app.base.BaseFragment
 import com.android.t4tek.app.main.MainActivityVM
-import com.android.t4tek.app.main.fragment.MainViewModel
 import com.android.t4tek.app.utils.Status
-import com.android.t4tek.databinding.ActivityMainBinding
 import com.android.t4tek.databinding.FragmentPieBinding
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
-import javax.inject.Inject
-import kotlin.random.Random
 
 @AndroidEntryPoint
 class PieFragment : BaseFragment() {
