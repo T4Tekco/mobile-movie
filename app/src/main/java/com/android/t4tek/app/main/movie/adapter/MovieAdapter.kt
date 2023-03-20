@@ -4,19 +4,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.ItemAnimator.AdapterChanges
 import com.android.t4tek.R
 import com.android.t4tek.data.json_model.JsonMovie
 import com.android.t4tek.databinding.ItemMovieBinding
 import com.bumptech.glide.Glide
+import dagger.hilt.android.AndroidEntryPoint
 
 class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
-    lateinit var binding: ItemMovieBinding
     private lateinit var itemMovie : List<JsonMovie>
+    lateinit var binding: ItemMovieBinding
 
 
-    fun getListData(itemMovie: List<JsonMovie>?) {
-        this.itemMovie = itemMovie!!
+    fun getListData(itemMovie: List<JsonMovie>) {
+        this.itemMovie = itemMovie
     }
 
     inner class MovieViewHolder(view:View): RecyclerView.ViewHolder(view)

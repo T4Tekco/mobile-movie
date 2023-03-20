@@ -6,10 +6,14 @@ import com.android.t4tek.app.base.BaseViewModel
 import com.android.t4tek.app.utils.Resource
 import com.android.t4tek.data.json_model.JsonMovie
 import com.android.t4tek.data.repository.UserRepository
+import com.android.t4tek.data.repository.UserRepositoryImpl
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MovieMainVM(
-    private val dataRepository : UserRepository
+@HiltViewModel
+class MovieMainVM @Inject constructor(
+    private val dataRepository : UserRepositoryImpl
 ) : BaseViewModel() {
 
     private var _movieLiveData: MutableLiveData<Resource<List<JsonMovie>>> = MutableLiveData()
