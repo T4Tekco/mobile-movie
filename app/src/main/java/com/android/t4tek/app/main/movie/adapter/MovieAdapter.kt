@@ -13,8 +13,8 @@ import dagger.hilt.android.AndroidEntryPoint
 
 class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
-    private lateinit var itemMovie : List<JsonMovie>
-    lateinit var binding: ItemMovieBinding
+    private var itemMovie : List<JsonMovie> = ArrayList<JsonMovie>()
+    var binding: ItemMovieBinding? = null
 
 
     fun getListData(itemMovie: List<JsonMovie>) {
@@ -34,8 +34,10 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         holder.itemView.apply {
-            Glide.with(binding.imgMovie).load(itemMovie[position].image).into(binding.imgMovie)
-            binding.tvName.text = itemMovie[position].movie
+            Glide.with(binding!!.imgMovie)
+                .load(itemMovie[position].image)
+                .into(binding!!.imgMovie)
+            binding?.tvName?.text = itemMovie[position].movie
         }
     }
 }

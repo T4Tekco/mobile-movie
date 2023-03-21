@@ -37,7 +37,6 @@ class MovieMain : AppCompatActivity() {
             when (it.status) {
                 Status.SUCCESS -> {
                     binding?.loading?.visibility = View.GONE
-
                     movieAdapter.getListData(it.data!!)
                     movieAdapter.notifyDataSetChanged()
                 }

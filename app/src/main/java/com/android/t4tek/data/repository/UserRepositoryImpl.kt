@@ -6,12 +6,13 @@ import com.android.t4tek.data.remote.response.PeopleResponse
 import com.android.t4tek.data.entity.PersonEntity
 import com.android.t4tek.data.json_model.JsonMovie
 import com.android.t4tek.data.json_model.JsonPerson
+import com.android.t4tek.data.remote.ApiHelperImpl
 import com.android.t4tek.data.remote.response.MoviesResponse
 import javax.inject.Inject
 
 class UserRepositoryImpl @Inject constructor(
     private val db: AppDatabase,
-    private val apiHelper: ApiHelper
+    private val apiHelper: ApiHelperImpl
 ) : UserRepository, BaseRepository() {
     override suspend fun getMovies(): List<JsonMovie> {
         val response = apiHelper.getMovies()
