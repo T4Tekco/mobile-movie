@@ -6,11 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".app.main.pie.PieFragment">
 
-    <TextView
-        android:id="@+id/tvTitle"
+    <Button
+        android:id="@+id/btnMovie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello Pie"
+        android:text="Movie"
         android:textSize="50sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,7 +26,7 @@
         android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/btnMovie" />
     <Button
         android:id="@+id/btnFetchApi"
         android:layout_width="wrap_content"
@@ -34,7 +34,7 @@
         android:layout_marginTop="20dp"
         android:text="Fetch API"
         android:textSize="40sp"
-        app:layout_constraintBottom_toTopOf="@+id/tvTitle"
+        app:layout_constraintBottom_toTopOf="@+id/btnMovie"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
