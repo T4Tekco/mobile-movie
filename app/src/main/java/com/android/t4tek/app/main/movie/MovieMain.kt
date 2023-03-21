@@ -12,6 +12,8 @@ import com.android.t4tek.app.utils.Resource
 import com.android.t4tek.app.utils.Status
 import com.android.t4tek.data.json_model.JsonMovie
 import com.android.t4tek.databinding.ActivityMovieMainBinding
+
+
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 @AndroidEntryPoint
@@ -20,13 +22,14 @@ class MovieMain : AppCompatActivity() {
     var binding: ActivityMovieMainBinding? = null
     lateinit var movieAdapter : MovieAdapter
     private lateinit var viewModel : MovieMainVM
-    lateinit var movieList : List<JsonMovie>
+    //lateinit var movieList : List<JsonMovie>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMovieMainBinding.inflate(layoutInflater)
         setContentView(binding!!.root)
 
-        val gridLayoutManager: GridLayoutManager = GridLayoutManager(this,3)
+        val gridLayoutManager: GridLayoutManager = GridLayoutManager(
+            this,3,GridLayoutManager.VERTICAL,false)
         binding?.rvMovie?.layoutManager = gridLayoutManager
         movieAdapter= MovieAdapter()
         binding?.rvMovie?.adapter = movieAdapter
@@ -37,7 +40,10 @@ class MovieMain : AppCompatActivity() {
             when (it.status) {
                 Status.SUCCESS -> {
                     binding?.loading?.visibility = View.GONE
-                    movieAdapter.getListData(it.data!!)
+                    val data = it.data
+                    if (data != null) {
+                        movieAdapter.getListData(data)
+                    }
                     movieAdapter.notifyDataSetChanged()
                 }
                 Status.ERROR -> {
@@ -51,9 +57,6 @@ class MovieMain : AppCompatActivity() {
             }
         })
         viewModel.fetchDataMovies()
-
-
-
 
     }
 
