@@ -7,6 +7,7 @@ import android.widget.TextView
 import com.android.t4tek.R
 import com.android.t4tek.data.json_model.JsonMovie
 import com.android.t4tek.databinding.ActivityDetailBinding
+import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -32,7 +33,11 @@ class DetailActivity : AppCompatActivity() {
 //        tvYear.text = bundle.getLong("year").toString()
 //        tvStory.text = bundle.getString("story")
         binding.let {
-            it.imgDetailMovie.setImageResource(bundle!!.getInt("img"))
+            Glide.with(it.imgDetailMovie)
+                .load(bundle!!.getString("img"))
+                .centerCrop()
+                .into(it.imgDetailMovie)
+            //it.imgDetailMovie.setImageResource(bundle!!.getInt("img"))
             it.tvNameDetail.text = bundle.getString("name")
             it.tvYearDetail.text = bundle.getLong("year").toString()
             it.tvContentDetail.text= bundle.getString("story")
