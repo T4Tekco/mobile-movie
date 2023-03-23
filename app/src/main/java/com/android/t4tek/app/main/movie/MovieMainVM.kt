@@ -19,7 +19,9 @@ class MovieMainVM @Inject constructor(
     private var _movieLiveData: MutableLiveData<Resource<List<JsonMovie>>> = MutableLiveData()
     val movieLiveData : LiveData<Resource<List<JsonMovie>>> = _movieLiveData
 
-    
+    fun getData(){
+
+    }
 
     fun fetchDataMovies(){
         ioScope.launch {

@@ -1,5 +1,6 @@
 package com.android.t4tek.app.main.movie
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -8,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.android.t4tek.app.main.movie.adapter.MovieAdapter
+import com.android.t4tek.app.main.movie.detail.DetailActivity
 import com.android.t4tek.app.utils.Resource
 import com.android.t4tek.app.utils.Status
 import com.android.t4tek.data.json_model.JsonMovie
@@ -42,7 +44,23 @@ class MovieMain : AppCompatActivity() {
                     binding?.loading?.visibility = View.GONE
                     val data = it.data
                     if (data != null) {
-                        movieAdapter.getListData(data)
+                        movieAdapter.getListData(data,object:MovieAdapter.onItemClickListener{
+                            override fun onItemClick(position: Int) {
+                                val intent = Intent(this@MovieMain,DetailActivity::class.java)
+                                intent.putExtra("img",data[position].image)
+                                intent.putExtra("name",data[position].movie)
+                                intent.putExtra("year",data[position].year)
+                                intent.putExtra("story",data[position].story)
+                                startActivity(intent)
+//                                val fragmet : MovieFragment = supportFragmentManager.findFragmentById(R.id.fragmentDetail) as MovieFragment
+//                                fragmet.changeData(
+//                                    data[position].image,
+//                                    data[position].movie,
+//                                    data[position].year,
+//                                    data[position].story
+//                                )
+                            }
+                        })
                     }
                     movieAdapter.notifyDataSetChanged()
                 }
