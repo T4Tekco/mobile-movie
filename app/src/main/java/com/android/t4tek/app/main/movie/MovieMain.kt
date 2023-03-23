@@ -46,6 +46,8 @@ class MovieMain : AppCompatActivity() {
                     if (data != null) {
                         movieAdapter.getListData(data,object:MovieAdapter.onItemClickListener{
                             override fun onItemClick(position: Int) {
+//                                Toast.makeText(this@MovieMain,"Thành Công ${data[position].movie}",Toast.LENGTH_SHORT)
+//                                    .show()
                                 val intent = Intent(this@MovieMain,DetailActivity::class.java)
                                 intent.putExtra("img",data[position].image)
                                 intent.putExtra("name",data[position].movie)
