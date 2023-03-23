@@ -13,25 +13,21 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MovieMainVM @Inject constructor(
-    private val dataRepository : UserRepositoryImpl
+    private val dataRepository : UserRepositoryImpl // liên kết đến repository
 ) : BaseViewModel() {
 
     private var _movieLiveData: MutableLiveData<Resource<List<JsonMovie>>> = MutableLiveData()
     val movieLiveData : LiveData<Resource<List<JsonMovie>>> = _movieLiveData
 
-    fun getData(){
-
-    }
-
     fun fetchDataMovies(){
         ioScope.launch {
-            _movieLiveData.postValue(Resource.loading())
+            _movieLiveData.postValue(Resource.loading()) // Khi dữ liệu đang load
             try {
                 val result = dataRepository.getMovies()
-                _movieLiveData.postValue(Resource.success(result))
+                _movieLiveData.postValue(Resource.success(result)) // dữ liệu đã load thành công
             } catch (ex: Exception) {
                 _movieLiveData.postValue(
-                    ex.message?.let { Resource.error(it) }
+                    ex.message?.let { Resource.error(it) } // load dữ liệu bị lỗi
                 )
             }
         }
