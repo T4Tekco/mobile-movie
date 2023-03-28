@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -18,20 +19,16 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".app.main.movie.detail.DetailActivity"
-            android:exported="false" />
+            android:name=".app.main.movie.detail.DetailActivity" />
+        <activity android:name=".app.main.movie.MovieMain"/>
         <activity
-         android:name=".app.main.movie.MovieMain"
-        android:exported="false" />
-        <activity
-            android:name=".app.main.MainActivity"
+            android:name=".app.main.movie.Background_splash"
+            android:theme="@style/Theme.T4tek.bg_splash"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

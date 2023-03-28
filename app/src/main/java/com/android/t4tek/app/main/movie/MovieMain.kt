@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.view.View
 import android.view.View.OnClickListener
 import android.widget.Toast
+import androidx.activity.compose.setContent
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -28,9 +30,9 @@ class MovieMain : AppCompatActivity() {
     //lateinit var movieList : List<JsonMovie>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        installSplashScreen()
         binding = ActivityMovieMainBinding.inflate(layoutInflater)
         setContentView(binding!!.root)
-
         initMovieAdapter() // set các thuộc tính của recyclerview
         getData() // lấy dữ liệu từ ViewModel
         viewModel.fetchDataMovies()

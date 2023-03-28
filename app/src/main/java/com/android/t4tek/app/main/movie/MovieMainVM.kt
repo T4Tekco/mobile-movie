@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MovieMainVM @Inject constructor(
-    private val dataRepository : UserRepositoryImpl // liên kết đến repository
+    private val dataRepository : UserRepository // liên kết đến repository
 ) : BaseViewModel() {
 
     private var _movieLiveData: MutableLiveData<Resource<List<JsonMovie>>> = MutableLiveData()

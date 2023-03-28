@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 class UserRepositoryImpl @Inject constructor(
     private val db: AppDatabase,
-    private val apiHelper: ApiHelperImpl
+    private val apiHelper: ApiHelper
 ) : UserRepository, BaseRepository() {
     override suspend fun getMovies(): List<JsonMovie> {
         val response = apiHelper.getMovies()
