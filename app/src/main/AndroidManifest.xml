@@ -20,11 +20,11 @@
         <activity
             android:name=".app.main.movie.detail.DetailActivity"
             android:exported="false" />
-        <!-- <activity -->
-        <!-- android:name=".MovieMain" -->
-        <!-- android:exported="false" /> -->
         <activity
-            android:name=".app.main.movie.MovieMain"
+         android:name=".app.main.movie.MovieMain"
+        android:exported="false" />
+        <activity
+            android:name=".app.main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

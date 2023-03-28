@@ -89,6 +89,13 @@ class PieFragment : BaseFragment() {
                 )
                 findNavController().navigate(R.id.action_pieFragment_to_nougatFragment, bundle)
             }
+            it.btnMovie.setOnClickListener{
+                val bundle = bundleOf(
+                     getString(R.string.nav_arg_to_movie_int) to 3,
+                    getString(R.string.nav_arg_to_movie_string) to "from PieFragment to Movie",
+                )
+                findNavController().navigate(R.id.action_pieFragment_to_movieMain, bundle)
+            }
         }
     }
 
