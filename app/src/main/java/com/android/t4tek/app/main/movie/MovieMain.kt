@@ -3,6 +3,7 @@ package com.android.t4tek.app.main.movie
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import android.view.View.OnClickListener
 import android.widget.Toast
@@ -27,6 +28,7 @@ class MovieMain : AppCompatActivity() {
     var binding: ActivityMovieMainBinding? = null
     lateinit var movieAdapter : MovieAdapter
     private lateinit var viewModel : MovieMainVM
+    var check : Boolean = false
     //lateinit var movieList : List<JsonMovie>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +39,6 @@ class MovieMain : AppCompatActivity() {
         getData() // lấy dữ liệu từ ViewModel
         viewModel.fetchDataMovies()
     }
-
 
     private fun getData() {
         viewModel = ViewModelProvider(this)[MovieMainVM::class.java] // xác định ViewModel MovieMainVM
@@ -59,6 +60,7 @@ class MovieMain : AppCompatActivity() {
                         })
                     }
                     movieAdapter.notifyDataSetChanged()
+
                 }
                 Status.ERROR -> { // khi không có dữ liệu
                     Toast.makeText(this,"Erro:",Toast.LENGTH_SHORT)

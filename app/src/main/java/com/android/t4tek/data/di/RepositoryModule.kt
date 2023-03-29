@@ -1,5 +1,7 @@
 package com.android.t4tek.data.di
 
+import com.android.t4tek.data.repository.MovieRepository
+import com.android.t4tek.data.repository.MovieRepositoryImpl
 import com.android.t4tek.data.repository.UserRepositoryImpl
 import com.android.t4tek.data.repository.UserRepository
 import dagger.Binds
@@ -12,4 +14,7 @@ import dagger.hilt.components.SingletonComponent
 abstract class RepositoryModule {
     @Binds
     abstract fun bindUserRepository(impl: UserRepositoryImpl): UserRepository
+
+    @Binds
+    abstract fun bindMovieRepository(impl: MovieRepositoryImpl): MovieRepository
 }

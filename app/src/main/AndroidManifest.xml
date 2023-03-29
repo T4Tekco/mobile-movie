@@ -20,10 +20,9 @@
         tools:targetApi="31">
         <activity
             android:name=".app.main.movie.detail.DetailActivity" />
-        <activity android:name=".app.main.movie.MovieMain"/>
-        <activity
-            android:name=".app.main.movie.Background_splash"
-            android:theme="@style/Theme.T4tek.bg_splash"
+
+        <activity android:name=".app.main.movie.MovieMain"
+            android:theme="@style/Theme.splash"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,6 +31,18 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
+        </activity>
+
+
+        <activity
+            android:name=".app.main.movie.Background_splash"
+           >
+        </activity>
+
+
+        <activity android:name=".app.main.MainActivity"
+            android:exported="false">
+
         </activity>
     </application>
 

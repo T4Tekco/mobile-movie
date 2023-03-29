@@ -24,15 +24,15 @@ class PieViewModel @Inject constructor(
     val movieLoader: LiveData<Resource<List<JsonMovie>>> = _movieLoader
     fun fetchMovies() {
         ioScope.launch {
-            _movieLoader.postValue(Resource.loading())
-            try {
-                val result = userRepository.getMovies()
-                _movieLoader.postValue(Resource.success(result))
-            } catch (ex: Exception) {
-                _movieLoader.postValue(
-                    ex.message?.let { Resource.error(it) }
-                )
-            }
+//            _movieLoader.postValue(Resource.loading())
+//            try {
+//                val result = userRepository.getMovies()
+//                _movieLoader.postValue(Resource.success(result))
+//            } catch (ex: Exception) {
+//                _movieLoader.postValue(
+//                    ex.message?.let { Resource.error(it) }
+//                )
+//            }
         }
     }
 }
