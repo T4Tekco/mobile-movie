@@ -1,10 +1,13 @@
 package com.android.t4tek.app.main.movie.detail
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import com.android.t4tek.R
+import com.android.t4tek.app.main.movie.MovieMain
 import com.android.t4tek.data.json_model.JsonMovie
 import com.android.t4tek.databinding.ActivityDetailBinding
 
@@ -21,6 +24,15 @@ class DetailActivity : AppCompatActivity() {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
         transDataAdapter() // lấy dữ liệu từ bên activity Movie
+        buttonBack()
+    }
+    fun buttonBack(){
+        //xử lý nút Back
+        val btnBack = findViewById<Button>(R.id.btnBack)
+        btnBack.setOnClickListener {
+            startActivity(Intent(this, MovieMain::class.java))
+        }
+
     }
     fun transDataAdapter(){
         val bundle:Bundle? = intent.extras
@@ -32,9 +44,13 @@ class DetailActivity : AppCompatActivity() {
             it.tvNameDetail.text = bundle.getString("name")
             it.tvYearDetail.text = bundle.getLong("year").toString()
             it.tvContentDetail.text= bundle.getString("story")
+            it.txtRating.text = bundle.getDouble("rating").toString()
         }
     }
-
+//    override fun onDestroy() {
+//        super.onDestroy()
+//        binding = null!!
+//    }
 }
 
 //    lateinit var img:ImageView

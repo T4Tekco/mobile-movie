@@ -66,6 +66,7 @@ class MovieMain : AppCompatActivity() {
                                 intent.putExtra("name",data[position].movie)
                                 intent.putExtra("year",data[position].year)
                                 intent.putExtra("story",data[position].story)
+                                intent.putExtra("rating",data[position].rating)
                                 startActivity(intent)
                             }
                         })
