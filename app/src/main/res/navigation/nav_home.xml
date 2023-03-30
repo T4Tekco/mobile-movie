@@ -25,9 +25,6 @@
             android:name="@string/nav_arg_to_pie_string"
             android:defaultValue=""
             app:argType="string" />
-        <action
-            android:id="@+id/action_pieFragment_to_movieMain22"
-            app:destination="@id/movieMain2" />
     </fragment>
     <fragment
         android:id="@+id/oreoFragment"
@@ -65,15 +62,4 @@
             android:id="@+id/action_nougatFragment_to_pieFragment"
             app:destination="@id/pieFragment" />
     </fragment>
-    <activity
-        android:id="@+id/movieMain2"
-        android:name="com.android.t4tek.app.main.movie.MovieMain"
-        android:label="activity_movie_main"
-        tools:layout="@layout/activity_movie_main" >
-        <argument android:name="nav_arg_to_movie_int"
-            app:argType="integer" />
-        <argument
-            android:name="nav_arg_to_movie_string"
-            app:argType="string" />
-    </activity>
 </navigation>

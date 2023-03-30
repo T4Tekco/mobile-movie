@@ -39,12 +39,8 @@ class PieFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         obServe()
         arguments?.let {
-            val argInt1 = it.getInt(getString(R.string.nav_arg_to_movie_int))
-            val argString_ = it.getString(getString(R.string.nav_arg_to_movie_string))
             val argInt = it.getInt(getString(R.string.nav_arg_to_pie_int))
             val argString = it.getString(getString(R.string.nav_arg_to_pie_string))
-            Timber.i("arguments int: $argInt1")
-            Timber.i("arguments int: $argString_")
             Timber.i("arguments int: $argInt")
             Timber.i("arguments string: $argString")
         }
@@ -92,13 +88,6 @@ class PieFragment : BaseFragment() {
                     getString(R.string.nav_arg_to_nougat_string) to "from PieFragment to Nougat",
                 )
                 findNavController().navigate(R.id.action_pieFragment_to_nougatFragment, bundle)
-            }
-            it.btnMovie.setOnClickListener {
-                val bundle = bundleOf(
-                    getString(R.string.nav_arg_to_movie_int) to 3,
-                    getString(R.string.nav_arg_to_movie_string) to "from PieFragment to Movie"
-                )
-                findNavController().navigate(R.id.action_pieFragment_to_movieMain22, bundle)
             }
         }
     }

@@ -3,40 +3,50 @@ package com.android.t4tek.app.main.movie.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView.OnItemClickListener
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ItemAnimator.AdapterChanges
 import com.android.t4tek.R
 import com.android.t4tek.data.json_model.JsonMovie
-import com.android.t4tek.databinding.ItemMovieBinding
 import com.bumptech.glide.Glide
-import dagger.hilt.android.AndroidEntryPoint
 
 class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
+    private lateinit var itemClick : onItemClickListener
     private var itemMovie : List<JsonMovie>? = null
     //var binding: ItemMovieBinding? = null
-
-
-    fun getListData(itemMovie: List<JsonMovie>) {
-        this.itemMovie = itemMovie
+    interface onItemClickListener{
+        fun onItemClick(position: Int)
     }
 
-    class MovieViewHolder(view:View): RecyclerView.ViewHolder(view){
+    fun getListData(itemMovie: List<JsonMovie>,itemClick : onItemClickListener) {
+        this.itemMovie = itemMovie
+        this.itemClick = itemClick
+    }
+
+    inner class MovieViewHolder(view:View, itemClick: onItemClickListener): RecyclerView.ViewHolder(view){
         val imgMovie : ImageView = view.findViewById(R.id.imgMovie)
         val tvName : TextView = view.findViewById(R.id.tvName)
-        fun bin(data:JsonMovie){
-            Glide.with(imgMovie)
-                .load(data.image)
-                .into(imgMovie)
-            tvName.text = data.movie
-        }
-    }
+        val tvdirector: TextView = view.findViewById(R.id.txt_director)
 
+        fun bin(data:JsonMovie){
+        Glide.with(imgMovie)
+            .load(data.image)
+            .into(imgMovie)
+        tvName.text = data.movie
+            tvdirector.text = data.director
+        }
+        init {
+           itemView.setOnClickListener {
+               itemClick.onItemClick(adapterPosition)
+           }
+        }
+
+     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_movie,parent,false)
-        return MovieViewHolder(view)
+        return MovieViewHolder(view,itemClick)
     }
 
     override fun getItemCount(): Int {

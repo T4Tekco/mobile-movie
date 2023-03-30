@@ -17,13 +17,11 @@
         android:theme="@style/Theme.T4tek"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-  <activity
-        android:name=".app.main.movie.MovieMain"
-        android:exported="false" >
-
-  </activity>
+<!--        <activity-->
+<!--            android:name=".MovieMain"-->
+<!--            android:exported="false" />-->
         <activity
-            android:name=".app.main.MainActivity"
+            android:name=".app.main.movie.MovieMain"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

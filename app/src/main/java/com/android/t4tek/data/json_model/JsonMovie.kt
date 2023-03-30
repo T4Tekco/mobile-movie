@@ -1,5 +1,7 @@
 package com.android.t4tek.data.json_model
 
+
+
 data class JsonMovie (
     val movie: String,
     val year: Long,
@@ -11,6 +13,7 @@ data class JsonMovie (
     val image: String,
     val story: String
 )
+
 data class Cast (
     val name: String
 )

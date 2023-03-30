@@ -1,13 +1,16 @@
 package com.android.t4tek.app.main.movie
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.View.OnClickListener
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.android.t4tek.app.main.movie.adapter.MovieAdapter
+import com.android.t4tek.app.main.movie.detail.DetailActivity
 import com.android.t4tek.app.utils.Resource
 import com.android.t4tek.app.utils.Status
 import com.android.t4tek.data.json_model.JsonMovie
@@ -28,64 +31,59 @@ class MovieMain : AppCompatActivity() {
         binding = ActivityMovieMainBinding.inflate(layoutInflater)
         setContentView(binding!!.root)
 
-        val gridLayoutManager: GridLayoutManager = GridLayoutManager(
-            this,3,GridLayoutManager.VERTICAL,false)
-        binding?.rvMovie?.layoutManager = gridLayoutManager
-        movieAdapter= MovieAdapter()
-        binding?.rvMovie?.adapter = movieAdapter
-        binding?.rvMovie?.hasFixedSize()
+        initMovieAdapter() // set các thuộc tính của recyclerview
+        getData() // lấy dữ liệu từ ViewModel
+        viewModel.fetchDataMovies()
+    }
 
-        viewModel = ViewModelProvider(this)[MovieMainVM::class.java]
-        viewModel.movieLiveData.observe(this, Observer<Resource<List<JsonMovie>>> {
-            when (it.status) {
-                Status.SUCCESS -> {
+
+    private fun getData() {
+        viewModel = ViewModelProvider(this)[MovieMainVM::class.java] // xác định ViewModel MovieMainVM
+        viewModel.movieLiveData.observe(this, Observer<Resource<List<JsonMovie>>> {// nhận dữ liệu
+            when (it.status) { // xác định thuộc tính của dữ liệu
+                Status.SUCCESS -> { // khi có dữ liệu
                     binding?.loading?.visibility = View.GONE
                     val data = it.data
                     if (data != null) {
-                        movieAdapter.getListData(data)
+                        movieAdapter.getListData(data,object:MovieAdapter.onItemClickListener{ //truyền tham số cho phương thức getListData của Adapter
+                            override fun onItemClick(position: Int) { // phương thức click lấy thuộc tính của item adapter
+                                val intent = Intent(this@MovieMain,DetailActivity::class.java)
+                                intent.putExtra("img",data[position].image)
+                                intent.putExtra("name",data[position].movie)
+                                intent.putExtra("year",data[position].year)
+                                intent.putExtra("story",data[position].story)
+                                startActivity(intent)
+                            }
+                        })
                     }
                     movieAdapter.notifyDataSetChanged()
                 }
-                Status.ERROR -> {
+                Status.ERROR -> { // khi không có dữ liệu
                     Toast.makeText(this,"Erro:",Toast.LENGTH_SHORT)
                     binding?.loading?.visibility = View.GONE
                 }
-                Status.LOADING -> {
-
+                Status.LOADING -> { // khi dữ liệu đang load
                     binding?.loading?.visibility = View.VISIBLE
                 }
             }
         })
-        viewModel.fetchDataMovies()
-
+    }
+    private fun initMovieAdapter() {
+    val gridLayoutManager: GridLayoutManager = GridLayoutManager(
+        this,3,GridLayoutManager.VERTICAL,false) // xét Recycler View là GridLayou
+    binding?.rvMovie?.layoutManager = gridLayoutManager
+    movieAdapter= MovieAdapter()
+    binding?.rvMovie?.adapter = movieAdapter // Cho layout recyclerview xác định được item adapter
+    binding?.rvMovie?.hasFixedSize()
     }
 
 
-//    private fun getData() {
-//        viewModel.movieLiveData.observe(this, Observer {response->
-//            when (response.status) {
-//                Status.SUCCESS -> {
-//                    binding?.loading?.visibility = View.GONE
-//                    movieAdapter.getListData(response.data)
-//
-//                }
-//                Status.ERROR -> {
-//                    binding?.loading?.visibility = View.GONE
-//                }
-//                Status.LOADING -> {
-//                    binding?.loading?.visibility = View.VISIBLE
-//                }
-//            }
-//        })
-//    }
-//    private fun getLiveData(): List<JsonMovie> {
-//        return ArrayList()
-//    }
-//
-//    private fun initMovieAdapter() {
-//        val gridLayoutManager: GridLayoutManager = GridLayoutManager(this,3)
-//        binding?.rvMovie?.layoutManager = gridLayoutManager
-//        movieAdapter= MovieAdapter()
-//        binding?.rvMovie?.adapter = movieAdapter
-//    }
 }
+
+//                                val fragmet : MovieFragment = supportFragmentManager.findFragmentById(R.id.fragmentDetail) as MovieFragment
+//                                fragmet.changeData(
+//                                    data[position].image,
+//                                    data[position].movie,
+//                                    data[position].year,
+//                                    data[position].story
+//                                )
