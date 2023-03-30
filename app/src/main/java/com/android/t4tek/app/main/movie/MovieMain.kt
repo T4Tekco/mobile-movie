@@ -26,12 +26,12 @@ class MovieMain : AppCompatActivity() {
     var binding: ActivityMovieMainBinding? = null
     lateinit var movieAdapter : MovieAdapter
     private lateinit var viewModel : MovieMainVM
-    var check : Boolean = false
+
     //lateinit var movieList : List<JsonMovie>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMovieMainBinding.inflate(layoutInflater)
-        var splashScreen = installSplashScreen()
+        installSplashScreen()
         setContentView(binding!!.root)
         //splashScreen.setKeepOnScreenCondition{true}
 //        val container : View = findViewById(android.R.id.content)
@@ -71,7 +71,6 @@ class MovieMain : AppCompatActivity() {
                         })
                     }
                     movieAdapter.notifyDataSetChanged()
-
                 }
                 Status.ERROR -> { // khi không có dữ liệu
                     Toast.makeText(this,"Erro:",Toast.LENGTH_SHORT)
