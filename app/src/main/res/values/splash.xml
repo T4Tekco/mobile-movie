@@ -2,7 +2,8 @@
 <resources>
     <style name="Theme.splash" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">#FFFF</item>
-        <item name="windowSplashScreenAnimatedIcon">@drawable/logo_t4tek</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/bg_splash</item>
+        <item name="windowSplashScreenAnimationDuration">1000</item>
         <item name="postSplashScreenTheme">@style/Theme.T4tek</item>
     </style>
 </resources>

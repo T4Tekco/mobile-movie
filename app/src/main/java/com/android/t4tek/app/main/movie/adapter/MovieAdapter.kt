@@ -3,24 +3,24 @@ package com.android.t4tek.app.main.movie.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView.OnItemClickListener
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.t4tek.R
+import com.android.t4tek.data.entity.MovieEntity
 import com.android.t4tek.data.json_model.JsonMovie
 import com.bumptech.glide.Glide
 
 class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
     private lateinit var itemClick : onItemClickListener
-    private var itemMovie : List<JsonMovie>? = null
+    private var itemMovie : List<MovieEntity>? = null
     //var binding: ItemMovieBinding? = null
     interface onItemClickListener{
         fun onItemClick(position: Int)
     }
 
-    fun getListData(itemMovie: List<JsonMovie>,itemClick : onItemClickListener) {
+    fun getListData(itemMovie: List<MovieEntity>, itemClick: onItemClickListener) {
         this.itemMovie = itemMovie
         this.itemClick = itemClick
     }
@@ -30,7 +30,7 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
         val tvName : TextView = view.findViewById(R.id.tvName)
         val tvdirector: TextView = view.findViewById(R.id.txt_director)
 
-        fun bin(data:JsonMovie){
+        fun bin(data:MovieEntity){
         Glide.with(imgMovie)
             .load(data.image)
             .into(imgMovie)

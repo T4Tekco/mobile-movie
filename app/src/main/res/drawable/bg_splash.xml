@@ -3,8 +3,9 @@
 
     <item
         android:gravity="center"
-        android:height="150dp"
-        android:width="150dp"
+        android:height="100dp"
+        android:width="100dp"
         android:drawable="@drawable/logo_t4tek"
         />
+
 </layer-list>

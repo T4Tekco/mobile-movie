@@ -3,11 +3,9 @@ package com.android.t4tek.app.main.movie
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import android.view.View
-import android.view.View.OnClickListener
+import android.view.ViewTreeObserver.OnPreDrawListener
 import android.widget.Toast
-import androidx.activity.compose.setContent
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -16,12 +14,12 @@ import com.android.t4tek.app.main.movie.adapter.MovieAdapter
 import com.android.t4tek.app.main.movie.detail.DetailActivity
 import com.android.t4tek.app.utils.Resource
 import com.android.t4tek.app.utils.Status
-import com.android.t4tek.data.json_model.JsonMovie
+import com.android.t4tek.data.entity.MovieEntity
 import com.android.t4tek.databinding.ActivityMovieMainBinding
 
 
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
+
 @AndroidEntryPoint
 class MovieMain : AppCompatActivity() {
 
@@ -32,17 +30,30 @@ class MovieMain : AppCompatActivity() {
     //lateinit var movieList : List<JsonMovie>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        installSplashScreen()
         binding = ActivityMovieMainBinding.inflate(layoutInflater)
+        var splashScreen = installSplashScreen()
         setContentView(binding!!.root)
+        //splashScreen.setKeepOnScreenCondition{true}
+//        val container : View = findViewById(android.R.id.content)
+//        container.viewTreeObserver.removeOnPreDrawListener(object : OnPreDrawListener{
+//            override fun onPreDraw(): Boolean {
+//                return if(viewModel.isRead == true){
+//                    container.viewTreeObserver.removeOnPreDrawListener(this)
+//                    true
+//                }else{
+//                    false
+//                }
+//            }
+//
+//        })
         initMovieAdapter() // set các thuộc tính của recyclerview
         getData() // lấy dữ liệu từ ViewModel
         viewModel.fetchDataMovies()
     }
 
-    private fun getData() {
+    private fun getData(){
         viewModel = ViewModelProvider(this)[MovieMainVM::class.java] // xác định ViewModel MovieMainVM
-        viewModel.movieLiveData.observe(this, Observer<Resource<List<JsonMovie>>> {// nhận dữ liệu
+        viewModel.movieLiveData.observe(this, Observer<Resource<List<MovieEntity>>> {// nhận dữ liệu
             when (it.status) { // xác định thuộc tính của dữ liệu
                 Status.SUCCESS -> { // khi có dữ liệu
                     binding?.loading?.visibility = View.GONE
