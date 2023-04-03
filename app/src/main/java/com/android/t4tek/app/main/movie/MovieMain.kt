@@ -48,9 +48,17 @@ class MovieMain : AppCompatActivity() {
 //        })
         initMovieAdapter() // set các thuộc tính của recyclerview
         getData() // lấy dữ liệu từ ViewModel
+        updateData()
         viewModel.fetchDataMovies()
     }
 
+    private fun updateData(): ArrayList<String>{
+        val item = ArrayList<String>()
+        for (i in 20 until 30) {
+            item.add("Item $i")
+        }
+        return item
+    }
     private fun getData(){
         viewModel = ViewModelProvider(this)[MovieMainVM::class.java] // xác định ViewModel MovieMainVM
         viewModel.movieLiveData.observe(this, Observer<Resource<List<MovieEntity>>> {// nhận dữ liệu
