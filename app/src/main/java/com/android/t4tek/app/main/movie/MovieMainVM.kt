@@ -24,6 +24,7 @@ class MovieMainVM @Inject constructor(
         ioScope.launch {
             //_movieLiveData.postValue(Resource.loading()) // Khi dữ liệu đang load
             try {
+                dataRepository.clearData()
                 val repository = dataRepository.getMovies()
                 val result = dataRepository.saveMovieDb(repository)
                 _movieLiveData.postValue(Resource.success(result)) // dữ liệu đã load thành công

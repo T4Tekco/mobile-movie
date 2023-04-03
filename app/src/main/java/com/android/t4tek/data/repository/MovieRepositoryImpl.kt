@@ -26,4 +26,8 @@ class MovieRepositoryImpl @Inject constructor(
         val  dbList = db.moiveDao().getAll()
         return dbList
     }
+
+    override suspend fun clearData() {
+        db.moiveDao().clearData()
+    }
 }

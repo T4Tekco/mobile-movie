@@ -6,4 +6,6 @@ import com.android.t4tek.data.json_model.JsonMovie
 interface MovieRepository {
     suspend fun getMovies(): List<JsonMovie>
     suspend fun saveMovieDb(movie: List<JsonMovie>) : List<MovieEntity>
+    
+    suspend fun clearData()
 }
