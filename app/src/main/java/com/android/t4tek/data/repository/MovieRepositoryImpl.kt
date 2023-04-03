@@ -1,5 +1,6 @@
 package com.android.t4tek.data.repository
 
+import com.android.t4tek.app.utils.Resource
 import com.android.t4tek.data.entity.MovieEntity
 import com.android.t4tek.data.json_model.JsonMovie
 import com.android.t4tek.data.local.AppDatabase
@@ -25,5 +26,14 @@ class MovieRepositoryImpl @Inject constructor(
         db.moiveDao().inserAll(*list.toTypedArray())
         val  dbList = db.moiveDao().getAll()
         return dbList
+    }
+
+    override suspend fun clearAll(): Boolean {
+        db.moiveDao().clearAll()
+        return true
+    }
+
+    override suspend fun deletaMovie(){
+        db.moiveDao().delete(MovieEntity())
     }
 }

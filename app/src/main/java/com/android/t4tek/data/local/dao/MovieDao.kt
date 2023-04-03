@@ -1,6 +1,7 @@
 package com.android.t4tek.data.local.dao
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import com.android.t4tek.data.entity.MovieEntity
@@ -15,4 +16,10 @@ interface MovieDao {
 
     @Insert
     fun inserAll(vararg movie: MovieEntity)
+
+    @Query("DELETE FROM Movie")
+    fun clearAll()
+
+    @Delete
+    fun delete(moive : MovieEntity)
 }

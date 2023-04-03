@@ -18,6 +18,7 @@ class DetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar?.hide()
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
         transDataAdapter() // lấy dữ liệu từ bên activity Movie
@@ -32,6 +33,7 @@ class DetailActivity : AppCompatActivity() {
             it.tvNameDetail.text = bundle.getString("name")
             it.tvYearDetail.text = bundle.getLong("year").toString()
             it.tvContentDetail.text= bundle.getString("story")
+            it.txtRating.text = bundle.getDouble("rating").toString()
         }
     }
 
