@@ -24,16 +24,27 @@ class DetailActivity : AppCompatActivity() {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
         transDataAdapter() // lấy dữ liệu từ bên activity Movie
-        buttonBack()
-    }
-    fun buttonBack(){
-        //xử lý nút Back
-        val btnBack = findViewById<Button>(R.id.btnBack)
-        btnBack.setOnClickListener {
-            startActivity(Intent(this, MovieMain::class.java))
-        }
 
+        val actionbar = supportActionBar
+        actionbar!!.title = "Movie Detail"
+        actionbar.setDisplayHomeAsUpEnabled(true)
+
+//        buttonBack()
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+
+        onBackPressed()
+        return true
+    }
+//    fun buttonBack(){
+//        //xử lý nút Back
+//        val btnBack = findViewById<Button>(R.id.btnBack)
+//        btnBack.setOnClickListener {
+//            startActivity(Intent(this, MovieMain::class.java))
+//        }
+//
+//    }
     fun transDataAdapter(){
         val bundle:Bundle? = intent.extras
         binding.let {
