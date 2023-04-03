@@ -15,7 +15,4 @@ interface MovieDao {
 
     @Insert
     fun inserAll(vararg movie: MovieEntity)
-
-    @Query("DELETE FROM Movie")
-    fun clearData()
 }

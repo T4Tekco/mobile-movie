@@ -21,6 +21,7 @@ class DetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar?.hide()
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
         transDataAdapter() // lấy dữ liệu từ bên activity Movie
