@@ -83,7 +83,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            android:layout_margin="10dp"
             android:orientation="horizontal">
             <TextView
                 android:id="@+id/txtRating"
@@ -92,7 +92,7 @@
                 android:layout_marginBottom="15dp"
                 android:text="10"
                 android:textStyle="bold"
-                android:textSize="18sp"/>
+                android:textSize="15sp"/>
             <TextView
                 android:id="@+id/txtSo"
                 android:layout_width="wrap_content"
@@ -101,18 +101,27 @@
                 android:layout_marginBottom="15dp"
                 android:text="/10"
                 android:textStyle="bold"
-                android:textSize="18sp" />
+                android:textSize="15sp" />
             <TextView
                 android:id="@+id/tvYear_Detail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="8"
+                android:layout_weight="1"
                 android:layout_marginBottom="15dp"
                 android:textAlignment="center"
                 android:text="year"
                 android:textStyle="italic"
-                android:textSize="20sp" />
-
+                android:textSize="15sp" />
+            <Button
+                android:id="@+id/btnWatch"
+                android:layout_width="80dp"
+                android:layout_height="60dp"
+                android:text="Watch"
+                android:textColor="@color/white"
+                android:drawableStart="@drawable/baseline_play_circle_24"
+                android:layout_weight="2"
+                android:background="@drawable/custom_btnwatch"
+                />
 
         </LinearLayout>
 
@@ -123,7 +132,7 @@
             android:layout_height="wrap_content"
             android:text="noidung"
             android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
