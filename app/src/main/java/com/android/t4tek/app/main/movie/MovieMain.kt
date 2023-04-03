@@ -10,6 +10,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.android.t4tek.app.main.movie.adapter.MovieAdapter
 import com.android.t4tek.app.main.movie.detail.DetailActivity
 import com.android.t4tek.app.utils.Resource
@@ -21,7 +22,8 @@ import com.android.t4tek.databinding.ActivityMovieMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MovieMain : AppCompatActivity() {
+ class MovieMain : AppCompatActivity() {
+
 
     var binding: ActivityMovieMainBinding? = null
     lateinit var movieAdapter : MovieAdapter
@@ -48,9 +50,18 @@ class MovieMain : AppCompatActivity() {
 //        })
         initMovieAdapter() // set các thuộc tính của recyclerview
         getData() // lấy dữ liệu từ ViewModel
+        updateData()
         viewModel.fetchDataMovies()
+
     }
 
+
+    private fun updateData(){
+        binding?.swipeToRefresh?.setOnRefreshListener {
+            Toast.makeText(this, "Refresh data", Toast.LENGTH_SHORT).show()
+            binding!!.swipeToRefresh.isRefreshing = false
+        }
+    }
     private fun getData(){
         viewModel = ViewModelProvider(this)[MovieMainVM::class.java] // xác định ViewModel MovieMainVM
         viewModel.movieLiveData.observe(this, Observer<Resource<List<MovieEntity>>> {// nhận dữ liệu
